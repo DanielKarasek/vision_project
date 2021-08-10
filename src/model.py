@@ -1,4 +1,5 @@
 import os
+import time
 
 from enums import *
 
@@ -129,6 +130,12 @@ class Model:
       color = (color+10) % 255
 
     return img
+
+  def take_snapshot(self):
+    img = self.get_frame()
+    if img.dtype == np.float32 and img.max() <= 1:
+      img *= 255
+    cv2.imwrite("../snapshots/snapshot_"+str(int(time.time()))+".png", img)
 
   def update_static(self):
     method_fn = self.method_dict[self.method]

@@ -10,6 +10,9 @@ class Controller:
     self.view = view
     self.view.setup(self)
 
+  def take_snapshot(self):
+    self.model.take_snapshot()
+
   def get_frame(self):
     img: np.ndarray
     img = self.model.get_frame()

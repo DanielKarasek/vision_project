@@ -11,6 +11,7 @@ class ResultFrame(tk.Frame):
     self.grid_columnconfigure(0, weight=1)
     self.grid_rowconfigure(0, weight=1, uniform="row")
     self.grid_rowconfigure(1, weight=30, uniform="row")
+    self.grid_rowconfigure(2, weight=2, uniform="row")
 
     label = tk.Label(self, text="result frame", background="green")
     label.grid(row=0, column=0, sticky="n")
@@ -22,6 +23,8 @@ class ResultFrame(tk.Frame):
 
     self.configure(background="green")
 
+    snapshot_button = tk.Button(self, text="take snapshot", command=controller.take_snapshot)
+    snapshot_button.grid(row=2, column=0)
     self.img = None
 
   def update_image(self):
