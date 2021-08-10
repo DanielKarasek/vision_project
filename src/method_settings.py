@@ -136,7 +136,7 @@ class LineMethodSettings(BaseMethodSettings):
                  self.min_angle: 'min_angle',
                  self.min_rho: 'min_rho'}
 
-    self.setup(Method.LINES, "Canny method settings")
+    self.setup(Method.LINES, "Line method settings")
     self.copy_button = tk.Button(self, text="copy settings to segments", command=controller.copy_lines_settings_pressed)
     self.strategy_button = tk.Button(self, text="change strategies",
                                      command=controller.go2strategy_settings_pressed)
