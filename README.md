@@ -33,5 +33,20 @@ Strategies:
     * Sample Nth - samples every n-th edge point, fast downsample. But sometimes some line have most of it points on n-th positions
     * Sample percentage randomly - A bit slower than Sample Nth, but lowers a bit danger of surrpessing some lines
 2. Hough peaks - finding peaks in hough transform:
-    * My hough peaks - my algorithm to find peaks, which takes arguments of min angle and min rho as minimum rho/angle value before transformation into discrete image hough space(e.g. min rho 7 means that 2 lines have with same angle have to be at least 7 pixels apart)
-    * Scipy Peaks - Scipys algorithm. Min angle and min rho means only space between points in discrete image hough space -> therefor behaviour of these params are different if angle count and rho dim are higher/lower
+    * My hough peaks - my algorithm to find peaks, if min angle is N and min rho is M every line has to be either N degrees from other or M rhos from other. Rhos and angles are in regular non-matrixed hough space(not in hough discrete image kinda spacey). These params are invariant to Rho dim and Angle count.
+    * Scipy Peaks - Scipys algorithm. Min angle and min rho are same as above but in hough discrete image spacey. That means if angle is N then 2 peaks have to be N pixels away from each other in hough discrete image matrix. (this means that these params aren't invariant to Angle count and Rho dim params)
+3. Retrieve lines - how are lines retrieved
+    * Exact lines - retrieves lines which are cropped at end of the image. This might be required for some special occasions, however this is costly.
+    * Longer lines - moves along the line quite much further than the image borders are to acquiare 2 points. This is much faster and cv2.line, crops the line for us.
+
+## Hough segments
+Uses Hough space and point sampled from every line found (lines don't have to be calculated explicitly though), to then find segments along these lines. For every line we take all edge points(and those very close) that contributed to that line and then try to connect them. Hough segments takes same params as hough lines plus extra params. Those are max space between points. That is how much space can be between 2 points to still be consideres part of the same segment. Another one is rho off line tolerance which means how big of a corridor is considere around the line, for points to be considered to atribute to that line (kinda how big would division line be is in SVM). And lastly min segment lenght. Uses same strategies as hough lines except for line retrievel strategies.
+
+## Corners
+Traditional corner detector using quadratical approxim. to function of most change in 8 dirs. Params are sigma for gaussian filter before applied before derivs calculation. Filter size tells us in how big area around maxima to suppress other smaller maximas. Lastly threshold tells us how big maxima has to be to be considered an interest point.
+R score strategy - how to calculate R score from quadtratical approxim matrix
+* Harris - calculates trace and det and uses its connection to eigenvalues to calculate r score
+* Shi-tomasi - calculates actual eigen values and then calculates r score as the smaller one of them
+
+## Rhombuses
+This algorithm uses lines found by hough lines (or any other algorithm) in the form of angle and rho. Finds all pairs parallel pairs and then all perpendicular pairs. If any of these quadruplets have edges of cca same length then its a rhombus. First param is maximum parallel angle difference (from perfect parallelity) between lines in pairs. And second is maximum perpendicular (from perfect perpendecularity) angle differnce between pairs in quadruplets
