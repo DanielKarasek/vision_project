@@ -31,7 +31,7 @@ Strategies:
 1. Sample strategy - downsampling of edge points to increase speed of algorithm:
     * Sample all - samples all edges
     * Sample Nth - samples every n-th edge point, fast downsample. But sometimes some line have most of it points on n-th positions
-        * Sample percentage randomly - A bit slower than Sample Nth, but lowers a bit danger of surrpessing some lines
+    * Sample percentage randomly - A bit slower than Sample Nth, but lowers a bit danger of surrpessing some lines
 2. Hough peaks - finding peaks in hough transform:
-        * My hough peaks - my algorithm to find peaks, which takes arguments of min angle and min rho as minimum rho/angle value before transformation into discrete image hough space(e.g. min rho 7 means that 2 lines have with same angle have to be at least 7 pixels apart)
-        * Scipy Peaks - Scipys algorithm. Min angle and min rho means only space between points in discrete image hough space -> therefor behaviour of these params are different if angle count and rho dim are higher/lower
+    * My hough peaks - my algorithm to find peaks, which takes arguments of min angle and min rho as minimum rho/angle value before transformation into discrete image hough space(e.g. min rho 7 means that 2 lines have with same angle have to be at least 7 pixels apart)
+    * Scipy Peaks - Scipys algorithm. Min angle and min rho means only space between points in discrete image hough space -> therefor behaviour of these params are different if angle count and rho dim are higher/lower
