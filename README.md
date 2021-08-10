@@ -18,7 +18,7 @@ Some algorithms can employ different strategies to achieve same thing. For examp
 
 These strategies can be changed after "change strategies" button is pressed. Strategies for each method are explained further.
 
-
+ 
 ## Nothing
 Nothing only copies image (from video feed or static image) to output. Also Nothing allows to use gaussian filter with variable sigma, so we can see how much image will be blurred when same sigma is used in Canny. In future blurring settings might carry forward to canny. However in this case seing blurry image, doesn't give that much of insight on how will cannied image look. Therefor this isn't path isn't decided yet.
 
