@@ -4,6 +4,8 @@ My own implementations of several basic vision algorithms with varius strategies
 ## GUI
 GUI isn't the most handsome, and still has some crisp edges. But here is the rundown of functionalities.
 
+![Base app view](https://github.com/DanielKarasek/vision_project/blob/main/doc_images/base_view_screenshot.png)
+
 In this image we can see base view. On the left is frame with result either picture or webcam video feed with applied vision algorithm(here hough lines).
 U can take its snapshot (and then use for example in README :D) On the right side there are settings for current method.
 New settings are applied only after apply button is pressed (not on change of scale, this was too performance costly since TK has some questionable settings for callbacks).
