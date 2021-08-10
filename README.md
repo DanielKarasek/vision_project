@@ -9,7 +9,7 @@ GUI isn't the most handsome, and still has some crisp edges. But here is the run
 In this image we can see base view. On the left is frame with result either picture or webcam video feed with applied vision algorithm(here hough lines).
 U can take its snapshot (and then use for example in README :D) On the right side there are settings for current method.
 New settings are applied only after apply button is pressed (not on change of scale, this was too performance costly since TK has some questionable settings for callbacks).
-You can set other algorithm by pressing operation in top menu and then choosing new algorithm.
+You can choose other algorithm by pressing operation in top menu and then choosing new algorithm.
 If algorithm e.g. canny is used as part of other algorithm e.g. hough lines, settings used for first algorithm standing alone is used in case first algorithm is used as part in second algorithm. In this example if I set gaussian filter param sigma to 5 in canny method it will then be used in hough lines with this exact setting. Only difference is hough lines and hough segments. These 2 use lot of same parameters but still are 2 different algorithms therefor above doesn't apply. Current workaround is to use COPY button in hough lines - this might be solved with template pattern later, but I am not sure if having same common parameters is always desirible so TBD.
 
 There are 2 mods in this app. First one applies algorithm to static image. Second one works on webcam live feed. These mods can be altered in target menu at top of the screen. You can also choose another static image in this menu. Static image must be in ./test_images folder.
