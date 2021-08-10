@@ -25,6 +25,8 @@ Nothing only copies image (from video feed or static image) to output. Also "Not
 ## Canny
 Canny is the bread and butter algorithm used when finding lines, segments and other interest points. It can be used for many other additional processing methods such as cartoonying image. Basic algorithm uses 2/3 parameters. Low and high threshold used in double thresholding and sigma (which might be used before canny but here it is part of canny). Currently thresholds are decided automatically via simple approximation. In future versions I hope to add strategies here, so user can choose whether to use auto/manual tuning. Therefor only parameter is sigma.
 
+![Canny example](https://github.com/DanielKarasek/vision_project/blob/main/doc_images/canny_sigma3.png)
+
 ## Hough Lines
 Traditional hough lines algorithm. Hough transform -> peaks -> ??? -> profit! You can alter the dimensionality of hough transform with angle count and rho dim parameters. Threshold then is minimal value of peak in normalized hough transform. Min angle and min rho then sets size MxN matrix window size in which only 1 peak might be found.
 Strategies:
@@ -39,8 +41,13 @@ Strategies:
     * Exact lines - retrieves lines which are cropped at end of the image. This might be required for some special occasions, however this is costly.
     * Longer lines - moves along the line much further beyond the image borders to acquiare 2 points. This is much faster.
 
+![Hough lines example](https://github.com/DanielKarasek/vision_project/blob/main/doc_images/lines_base_settings.png)
+
+
 ## Hough segments
 Uses Hough space and point sampled from every line found (lines don't have to be calculated explicitly though), to then find segments along these lines. For every line we take all edge points (and also close additional close ones) that contributed to that line and then try to connect them. Hough segments takes same params as hough lines plus extra params. Those are max space between points. That is how much space can be between 2 points to still be consideres part of the same segment. Another one is rho off line tolerance which means how big of a corridor is considere around the line for points to be considered to atribute to that line (visually kinda how big would division space be in SVM). And lastly min segment lenght. Uses same strategies as hough lines except for line retrievel strategies.
+
+![Segments example](https://github.com/DanielKarasek/vision_project/blob/main/doc_images/segments.png)
 
 ## Corners
 Traditional corner detector using quadratical approxim. to function of most change in 8 dirs. Params are sigma for gaussian filter applied before derivs calculation. Filter size tells us in how big area around maxima to suppress other smaller maximas. Lastly threshold tells us how big maxima has to be to be considered an interest point.
@@ -48,6 +55,9 @@ R score strategy - how to calculate R score from quadtratical approxim matrix
 * Harris - calculates trace and det and uses its connection to eigenvalues to calculate r score
 * Shi-tomasi - calculates actual eigen values and then calculates r score as the smaller one of them at given point
 
+![Corners example](https://github.com/DanielKarasek/vision_project/blob/main/doc_images/corners.png)
+
 ## Rhombuses
 This algorithm uses lines found by hough lines (or any other algorithm) in the form of angle and rho. Finds all pairs of parallel lines and then all pairs that are perpendicular to each others(pair of pairs/quadruple of potential rhombus). If any of these quadruplets have all edges of cca same length then its a rhombus. First param is maximum parallel angle difference (from perfect parallelity) between lines in pairs. And second is maximum perpendicular (from perfect perpendecularity) angle difference between pairs in quadruplets
 
+![Rhombus example](https://github.com/DanielKarasek/vision_project/blob/main/doc_images/rhombus%20example.png)
