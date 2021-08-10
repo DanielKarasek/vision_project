@@ -28,10 +28,10 @@ Canny is the bread and butter algorithm used when processing lines, segments and
 ## Hough Lines
 Traditional hough lines algorithm. Hough transform -> peaks -> ??? -> profit! You can alter the dimensionality of hough transform with angle count and rho dim parameters. Threshold then is min. value of peak in hough transform. Min angle and min rho then sets size MxN matrix size in which only 1 peak might be found.
 Strategies:
-  1. Sample strategy - downsampling of edge points to increase speed of algorithm:
-    * Sample all - samples all edges
-    * Sample Nth - samples every n-th edge point, fast downsample. But sometimes some line have most of it points on n-th positions
-    * Sample percentage randomly - A bit slower than Sample Nth, but lowers a bit danger of surrpessing some lines
-  2. Hough peaks - finding peaks in hough transform:
-    * My hough peaks - my algorithm to find peaks, which takes arguments of min angle and min rho as minimum rho/angle value before transformation into discrete image hough space(e.g. min rho 7 means that 2 lines have with same angle have to be at least 7 pixels apart)
-    * Scipy Peaks - Scipys algorithm. Min angle and min rho means only space between points in discrete image hough space -> therefor behaviour of these params are different if angle count and rho dim are higher/lower
+1. Sample strategy - downsampling of edge points to increase speed of algorithm:
+        * Sample all - samples all edges
+        * Sample Nth - samples every n-th edge point, fast downsample. But sometimes some line have most of it points on n-th positions
+        * Sample percentage randomly - A bit slower than Sample Nth, but lowers a bit danger of surrpessing some lines
+2. Hough peaks - finding peaks in hough transform:
+        * My hough peaks - my algorithm to find peaks, which takes arguments of min angle and min rho as minimum rho/angle value before transformation into discrete image hough space(e.g. min rho 7 means that 2 lines have with same angle have to be at least 7 pixels apart)
+        * Scipy Peaks - Scipys algorithm. Min angle and min rho means only space between points in discrete image hough space -> therefor behaviour of these params are different if angle count and rho dim are higher/lower
